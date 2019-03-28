@@ -1,0 +1,61 @@
+{
+  "name": "vue-flux",
+  "version": "5.1.8",
+  "description": "Vue image slider",
+  "author": "ragnar lotus",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deulos/vue-flux.git"
+  },
+  "keywords": [
+    "vue",
+    "image",
+    "slider",
+    "parallax"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/deulos/vue-flux/issues"
+  },
+  "homepage": "https://github.com/deulos/vue-flux",
+  "main": "dist/vue-flux.umd.min.js",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build-docs": "vue-cli-service build --dest docs",
+    "bundle": "vue-cli-service build --target wc --name vue-fluxComponents \"src/components/*.vue\""
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "vue": "^2.5.17"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.4",
+    "@vue/cli-service": "^3.0.4",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^6.0.6",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "vue": {
+    "baseUrl": "/vue-flux/",
+    "css": {
+      "extract": false
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

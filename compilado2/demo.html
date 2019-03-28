@@ -1,0 +1,46 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>vue-flux demo</title>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+<script src="vue-flux.umd.js"></script>
+<script src="vue-flux.common.js"></script>
+
+</head>
+
+<body>
+	<div id="app">
+<vue-flux
+   :options="fluxOptions"
+   :images="fluxImages"
+   :transitions="fluxTransitions"
+   ref="slider">
+      <flux-pagination slot="pagination"></flux-pagination>
+</vue-flux>
+</div>
+
+<script type="text/javascript">
+  Vue.use("vue-flux");
+
+	new Vue({ el: '#app',
+	components: {
+      VueFlux,
+      FluxPagination
+   },
+
+	  data: () => ({
+	  	fluxOptions: {
+         autoplay: true
+      },
+      fluxImages: [ 'URL1', 'URL2', 'URL3' ],
+      fluxTransitions: {
+         transitionBook: Transitions.transitionBook
+      }
+
+    })
+   })
+
+</script>
+
+</body>
+	</html>

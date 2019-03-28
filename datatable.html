@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-content>
+        <v-container>
+            <template>
+                <v-data-table
+                v-model="selected"
+                :headers="headers"
+                :items="rows"
+                item-key="value"
+                select-all
+                class="elevation-1"
+                >
+                    <template slot="items" slot-scope="props">
+                        <tr :active="props.selected" @click="props.selected = !props.selected">
+                        <td>
+                            <v-checkbox
+                            :input-value="props.selected"
+                            primary
+                            hide-details
+                            ></v-checkbox>
+                        </td>
+                        <td>{{ props.item.value }}</td>
+                        </tr>
+                    </template>
+                </v-data-table>
+            </template>
+	    </v-container>
+      </v-content>
+    </v-app>
+  </div>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+  <script>    
+    Vue.use(Vuetify)
+
+	new Vue({ el: '#app',
+	  data :{
+        selected:[
+          {
+            id: 'A',
+            value: 'A'
+          }
+          ],
+        headers: [
+          {
+            text: 'Values',
+            align: 'left',
+            sortable: false,
+          }
+        ],
+        rows: [
+          {
+            id: 'A',
+            value: 'A'
+          },
+          {
+            id: 'B',
+            value: 'B'
+          },
+          {
+            id: 'C',
+            value: 'C'
+          },
+          {
+            id: 'D',
+            value: 'D'
+          },
+          {
+            id: 'E',
+            value: 'E'
+          },
+          {
+            id: 'F',
+            value: 'F'
+          }
+        ]
+      },
+        watch:{
+            "selected": function(val){
+                console.log(this.selected);
+            }
+        }
+    })
+  </script>
+</body>
+</html>
