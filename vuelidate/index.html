@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- production version, optimized for size and speed -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="vuelidate-master/dist/vuelidate.min.js"></script>
+    <script src="vuelidate-master/dist/validators.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <input type="text" v-model="model">
+        <pre>{{ $v }}</pre>
+
+
+        <div>
+            <div class="form-group" :class="{ 'form-group--error': $v.name.$error }">
+              <label class="form__label">Nombre</label>
+              <input class="form__input" v-model.trim="name" @input="setName($event.target.value)"/>
+            </div>
+            <div class="error" v-if="!$v.name.required">El nombre es requerido</div>
+            <div class="error" v-if="!$v.name.minLength">El nombre debe tener al menos {{$v.name.$params.minLength.min}} caracteres.</div>
+            <div class="form-group" :class="{ 'form-group--error': $v.age.$error }">
+              <label class="form__label">Edad</label>
+              <input class="form__input" :value="age" @change="setAge($event.target.value)"/>
+            </div>
+            <div class="error" v-if="!$v.age.between">Debe ser un numero entre {{$v.age.$params.between.min}} y {{$v.age.$params.between.max}}</div>
+        </div>
+    </div>
+<script type="text/javascript"> 
+  
+    /* global Vue */
+    Vue.use(window.vuelidate.default)
+    var required = window.validators.required
+    var minLength = window.validators.minLength
+    var between = window.validators.between
+
+    
+    Vue.component('tree-view');
+    var app = new Vue({
+        el: '#app',
+        data: {
+        message: 'Hello Vue!',
+        model:'',
+        name:'',
+        age:0
+        },
+        validations: {
+    name: {
+      required,
+      minLength: minLength(4)
+    },
+    age: {
+      between: between(20, 30)
+    }
+  },
+
+  methods: {
+    setName(value) {
+      this.name = value
+      this.$v.name.$touch()
+    },
+    setAge(value) {
+      this.age = value
+      this.$v.age.$touch()
+    }
+  }
+    })
+</script>
+</body>
+</html>
